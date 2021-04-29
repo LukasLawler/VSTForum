@@ -1,0 +1,16 @@
+﻿@model AdminViewModel
+@{
+    ViewData["Title"] = "DeletePost";
+}
+
+<h1>Delete Post</h1>
+
+<h2>Are you sure you want to delete this post?</h2>
+
+<form asp-action="DeletePost" method="post">
+    <input type="hidden" asp-for="id" />
+
+    <button type="submit" class="btn btn-primary">Delete</button>
+    <a asp-controller="Home" asp-action="Index" asp-area="Admin" class="btn btn-primary">Cancel</a>
+</form>
+

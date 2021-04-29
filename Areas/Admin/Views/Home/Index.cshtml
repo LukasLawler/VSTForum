@@ -1,0 +1,63 @@
+﻿@using VSTForum.Models;
+@model AdminViewModel
+@{ 
+    IEnumerable<Post> posts = ViewData["Posts"] as IEnumerable<Post>;
+    IEnumerable<Category> categories = ViewData["Categories"] as IEnumerable<Category>;
+    IEnumerable<User> users = ViewData["Users"] as IEnumerable<User>;
+}
+
+<h1>Admin area</h1>
+
+<div class="row">
+    <div class="col-12 col-md-4">
+        <h1>Posts</h1>
+        <ul class="list-group">
+            @foreach (var post in posts)
+            {
+                <li class="list-group-item">
+                    <h3>@post.Title</h3>
+                    @if (post.PostId == "0")
+                    {
+                        <a>Cannot delete post ID 0.</a>
+                    }
+                    else
+                    {
+                    <a asp-action="DeletePost" asp-controller="Home" asp-route-id="@post.PostId">Delete</a>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-12 col-md-4">
+        <h1>Users</h1>
+        <ul class="list-group">
+            @foreach (var user in users)
+            {
+                <li class="list-group-item">
+                    <h3>@user.UserName</h3>
+                    @if (user.UserName.ToLower() == "Admin".ToLower())
+                    {
+                        <a>Cannot delete admin account.</a>
+                    }
+                    else
+                    {
+                        <a asp-action="DeleteUser" asp-controller="Home" asp-route-id="@user.Id">Delete</a>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-12 col-md-4">
+        <h1>Categories</h1>
+        <ul class="list-group">
+            @foreach (var cat in categories)
+            {
+                <li class="list-group-item">
+                    <h3>@cat.CategoryName</h3>
+                    <a asp-action="DeleteCategory" asp-controller="Home" asp-route-id="@cat.CategoryId">Delete</a>
+                </li>
+            }
+        </ul>
+        <a asp-action="Add" asp-controller="Home">Add new category</a>
+    </div>
+</div>
