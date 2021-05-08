@@ -29,7 +29,7 @@ namespace VSTForum
             services.AddControllersWithViews().AddNewtonsoftJson();
 
             services.AddDbContext<ForumContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("ForumContext")));
+                options.UseSqlServer(@"Server = tcp:vstforum.database.windows.net, 1433; Initial Catalog = Forums; Persist Security Info = False; User ID = cis; Password = G00dburg; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;"));
 
             // add this
             services.AddIdentity<User, IdentityRole>(options => {

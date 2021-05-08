@@ -34,7 +34,7 @@ namespace VSTForum.Controllers
             IQueryable<Post> query = context.Posts;
             query = query.Where(
                 p => p.Category.CategoryId.ToLower() == id.ToLower());
-            var posts = query.ToList();
+            var posts = query.OrderByDescending(p => p.PostId).ToList();
             return View(posts);
         }
 

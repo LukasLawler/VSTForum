@@ -10,7 +10,7 @@ namespace VSTForum.Migrations
             migrationBuilder.InsertData(
                 table: "PostReplies",
                 columns: new[] { "ReplyId", "Body", "PostId", "DateCreated", "UserId" },
-                values: new object[] { "0", "This is a test reply", "0", new DateTime(2021, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified), "879cd390-6ba6-4f80-9837-1407f622c20b" });
+                values: new object[] { "0", "This is a test reply", "0", new DateTime(2021, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified), "cc0edea5-1a9c-4e1f-aa00-61fbdcfc00bd" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

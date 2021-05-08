@@ -6,9 +6,16 @@
 <ul class="list-group col-12 col-sm-10">
     @foreach (Post post in Model)
     {
-        <li class="list-group-item">
-            <a asp-action="ViewPost" asp-controller="Home" asp-route-id="@post.PostId" class="text-dark"><b>@post.Title</b></a>
-            <p>@post.DateCreated.ToString()</p>
-        </li>
-    }
+        @if (post.PostId == "0")
+        {
+
+        }
+        else
+        {
+            <li class="list-group-item">
+                <a asp-action="ViewPost" asp-controller="Home" asp-route-id="@post.PostId" class="text-dark"><b>@post.Title</b></a>
+                <p>@post.DateCreated.ToString()</p>
+            </li>
+        }
+     }
 </ul>

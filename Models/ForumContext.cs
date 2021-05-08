@@ -22,7 +22,7 @@ namespace VSTForum.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            /*
+            
             modelBuilder.Entity<Category>().HasData(
                 new Category { CategoryId = "0", CategoryName = "Plugin Deals", Description = "Looking for a good deal on a plugin? Look in here!"},
                 new Category { CategoryId = "1", CategoryName = "News", Description = "New version of Pro Tools? New hardware release? Post here!"},
@@ -32,41 +32,12 @@ namespace VSTForum.Models
             );
             modelBuilder.Entity<Post>().HasData(
                 new Post { PostId = "0", Title = "Test Post", Body = "This is a test post.", CategoryId = "0", DateCreated = date, UserId = "18c99a9e-47c0-4352-aa59-a81b8a0c9c29"}
-            );*/
+            );
             modelBuilder.Entity<PostReply>().HasData(
                 new PostReply { ReplyId = "0", Body = "This is a test reply", DateCreated = date, PostId = "0", UserId = "18c99a9e-47c0-4352-aa59-a81b8a0c9c29" }
             );
                 
             
-        }
-        
-        public static async Task CreateAdminUser(IServiceProvider serviceProvider)
-        {
-            UserManager<User> userManager =
-                serviceProvider.GetRequiredService<UserManager<User>>();
-            RoleManager<IdentityRole> roleManager =
-                serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-            string username = "admin";
-            string password = "Sesam3";
-            string roleName = "Admin";
-
-            // if role doesn't exist, create it
-            if (await roleManager.FindByNameAsync(roleName) == null)
-            {
-                await roleManager.CreateAsync(new IdentityRole(roleName));
-            }
-
-            // if username doesn't exist, create it and add to role
-            if (await userManager.FindByNameAsync(username) == null)
-            {
-                User user = new User { UserName = username };
-                var result = await userManager.CreateAsync(user, password);
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, roleName);
-                }
-            }
         }
     }
 }
